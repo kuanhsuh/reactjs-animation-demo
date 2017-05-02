@@ -1,0 +1,34 @@
+import React, { Component } from 'react';
+import Waypoint from 'react-waypoint'
+class Green extends Component {
+ constructor(props) {
+    super(props);
+    this.state = {
+      isInView: false
+    };
+
+    this.onEnter = this.onEnter.bind(this);
+  }
+
+  onEnter({ previousPosition }) {
+    if (previousPosition === Waypoint.below) {
+      this.setState({
+        isInView: true
+      });
+    }
+  }
+  
+  render() {
+    const {isInView} = this.state
+    return (
+    <section className="green">
+      <Waypoint onEnter={this.onEnter.bind(this)}></Waypoint>
+      <h1 className={`js--wp-1 ${isInView ? 'animated fadeIn' : ''}`}>Fade</h1>
+    </section>
+    );
+  }
+}
+
+export default Green;
+
+
